@@ -2,234 +2,406 @@
 <html lang="en">
 
 <head>
-    <title>Express</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <title>Express</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
 </head>
 
 <body>
+  <div class="container">
+
+    <form action="" method="GET" id="form-search">
+      <input type="hidden" id="page" name="page" value="1">
+    <h1>Daftar siswa</h1>
+    <br />
+    <br />
+    <form action="/" method="GET" id="form-siswa">
+      <div class="form-group">
+        <input type="checkbox" class="form-check-input" name="checkId" id="checkId" />
+        <label for="exampleInputEmail1"> id</label>
+        <input type="integer" class="form-control" name="Id" value="" id="Id"
+          aria-describedby="emailHelp" />
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" class="form-check-input" name="checkString" id="checkString" />
+        <label for="exampleInputEmail1">string</label>
+        <input type="string" class="form-control" name="String" value="" id="String"
+          aria-describedby="emailHelp" />
+      </div>
+      <div class="form-group">
+        <input type="checkbox" class="form-check-input" name="checkInteger" id="checkInteger" />
+        <label for="exampleInputEmail1">integer</label>
+        <input type="integer" class="form-control" name="Integer" value="" id="Integer"
+          aria-describedby="emailHelp" />
+
+
+      </div>
+      <div class="form-group">
+        <input type="checkbox" class="form-check-input" name="checkFloat" id="checkFloat" />
+        <label for="exampleInputEmail1">float</label>
+        <input type="integer" class="form-control" name="Float" value="" id="Float"
+          aria-describedby="emailHelp" />
+
+      </div>
+      <div class="form-group row">
+        <label for="Date" class="col-sm-2 col-form-label">
+          <input class="form-check-input" type="checkbox" name="checkDate" value="" id="Date">
+          Date
+        </label>
+        <div class="col-sm-2">
+          <input type="date" name="startDate" class="form-control" id="Date" placeholder="start date">
+          <h6>to</h6>
+          <input type="date" name="endDate" class="form-control" id="Date" placeholder="end date">
+        </div>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" name="checkBoolean" id="checkBoolean" />
+        <label class="form-check-label" for="exampleCheck1">Boolean</label>
+        <select class="custom-select custom-select-lg mb-3" name="boolean">
+          <option selected>Open this select menu</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">SEARCH</button>
+
+    </form>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>String</th>
+          <th>Integer</th>
+          <th>Float</th>
+          <th>Date</th>
+          <th>Boolean</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table> 
+    <nav aria-label="Page navigation example">
+      <ul class="pagination"></ul>     
+    </nav>
     <div class="container">
-        <h1>Daftar siswa</h1>
-        <br />
-        <br />
-        <form action="/" method="GET" id="form-siswa">
-            <div class="form-group">
-                <input type="checkbox" class="form-check-input" name="checkId" id="exampleCheck1" />
-                <label for="exampleInputEmail1"> id</label>
-                <input type="integer" class="form-control" name="Id" value="" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" />
-            </div>
-
-            <div class="form-group">
-                <input type="checkbox" class="form-check-input" name="checkString" id="exampleCheck1" />
-                <label for="exampleInputEmail1">string</label>
-                <input type="string" class="form-control" name="String" value="" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" />
-            </div>
-            <div class="form-group">
-                <input type="checkbox" class="form-check-input" name="checkInteger" id="exampleCheck1" />
-                <label for="exampleInputEmail1">integer</label>
-                <input type="integer" class="form-control" name="Integer" value="" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" />
-
-
-            </div>
-            <div class="form-group">
-                <input type="checkbox" class="form-check-input" name="checkFloat" id="exampleCheck1" />
-                <label for="exampleInputEmail1">float</label>
-                <input type="integer" class="form-control" name="Float" value="" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" />
-
-            </div>
-            <div class="form-group row">
-                <label for="Date" class="col-sm-2 col-form-label">
-                    <input class="form-check-input" type="checkbox" name="checkDate" value="" id="Date">
-                    Date
-                </label>
-                <div class="col-sm-2">
-                    <input type="date" name="startDate" class="form-control" id="Date" placeholder="start date">
-                    <h6>to</h6>
-                    <input type="date" name="endDate" class="form-control" id="Date" placeholder="end date">
-                </div>
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name="checkBoolean" id="exampleCheck1" />
-                <label class="form-check-label" for="exampleCheck1">Boolean</label>
-                <select class="custom-select custom-select-lg mb-3" name="boolean">
-                    <option selected>Open this select menu</option>
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">SEARCH</button>
-
-        </form>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>String</th>
-                    <th>Integer</th>
-                    <th>Float</th>
-                    <th>Date</th>
-                    <th>Boolean</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="container">
-            <h1>Edit Data/Tambah Data</h1>
-            <form action="" method="post">
-              <div class="row">
-                <div class="col-sm-2">
-                  <label for="string" class="col-sm-2 col-form-label">String</label>
-                </div>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="string"
-                    name="string"
-                    autocomplete="off"
-                  />
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-2">
-                  <label for="integer" class="col-sm-2 col-form-label">Integer</label>
-                </div>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="integer"
-                    name="integer"
-                    autocomplete="off"
-                  />
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-2">
-                  <label for="float" class="col-sm-2 col-form-label">Float</label>
-                </div>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="float"
-                    name="float"
-                    autocomplete="off"
-                  />
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-2">
-                  <label for="date" class="col-sm-2 col-form-label">Date</label>
-                </div>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="date"
-                    name="date"
-                    autocomplete="off"
-                  />
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-2">
-                  <label for="boolean" class="col-sm-2 col-form-label">Boolean</label>
-                </div>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="boolean"
-                    name="boolean"
-                    autocomplete="off"
-                  />
-                </div>
-              </div>
-      
-              <button type="submit" class="btn btn-primary">UPDATE</button>
-              <button type="submit"class="btn btn-primary" >SAVE</button>
-
-            </form>
-        
+      <form id="form-add">
+        <h1>ADD Data</h1>
+  
+  
+        <div class="form-group row">
+          <label for="string" class="col-sm-2 col-form-label">String</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="addstring" placeholder="String" name="stringf">
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="integer" class="col-sm-2 col-form-label">Integer</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="addinteger" placeholder="Integer" name="integerf">
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="float" class="col-sm-2 col-form-label">Float</label>
+          <div class="col-sm-10">
+            <input type="number" step="any" class="form-control" id="addfloat" placeholder="Float" name="floatf">
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="Date" class="col-sm-2 col-form-label">Date</label>
+          <div class="col-sm-10">
+            <input type="date" class="form-control" id="adddate" placeholder="End Date" name="datef">
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="boolean" class="col-sm-2 col-form-label">Boolean</label>
+          <div class="col-sm-10">
+            <select class="custom-select" name="booleanf" id="addboolean">
+              <option selected disabled>Choose the boolean ...</option>
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </div>
+        </div>
+  
+  
+        <button class="btn btn-primary" type="submit">Save</button>
+      </form>
     </div>
+    <br><br><br>
+
+
+  <div class="container">
+    <form id="form-edit">
+      <h1>EDIT Data</h1>
+
+      <div class="form-group row">
+        <label for="id" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+          <input type="" class="form-control" placeholder="ID" name="editId" id="editId"  readonly>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="string" class="col-sm-2 col-form-label">String</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="editString" placeholder="String" name="editString">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="integer" class="col-sm-2 col-form-label">Integer</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="editInteger" placeholder="Integer" name="editInteger">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="float" class="col-sm-2 col-form-label">Float</label>
+        <div class="col-sm-10">
+          <input type="number" step="any" class="form-control" id="editFloat" placeholder="Float" name="editFloat">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="Date" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" id="editDate" placeholder="End Date" name="editDate" >
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="boolean" class="col-sm-2 col-form-label">Boolean</label>
+        <div class="col-sm-10">
+          <select class="custom-select" name="editBoolean" id="editBoolean">
+            <option selected disabled>Choose The Boolean</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+  </div>
+  <br>
+    
 
     <script type="text/javascript">
-        const API_URL = 'http://localhost:3000/api/'
+      const API_URL = 'http://localhost:3000/api/'
 
-        $(document).ready(() => {
-            loadData();
+      $(document).ready(() => {
+        loadData();
 
-            $('#form-siswa').submit((event) =>{
-                event.preventDefault();
-                let string = $('#string').val();
-                let integer = $('#integer').val();
-                let float = $('#float').val();
-                let date = $('#date').val();
-                let boolean = $('#boolean').val();
-                addData({string, integer, float, date, boolean})
+        
 
-            })
+        $('#form-add').submit((event) => {
+          event.preventDefault();
+          let string = $('#addstring').val();
+          let integer = $('#addinteger').val();
+          let float = $('#addfloat').val();
+          let date = $('#adddate').val();
+          let boolean = $('#addboolean').val();
+          addData({ string, integer, float, date, boolean })
+
         })
 
+        $("table tbody").on("click", ".btn-edit", function () {
+        printData($(this).attr('editId'));
+      })
 
-        const loadData = () => {
-            $.ajax({
-                method: "GET",
-                url: `${API_URL}siswa21`
+        $('table tbody').on("click", ".btn-delete", function () {
+         deleteData($(this).attr('dataId'));
+        });
 
-            }).done(function (data) {
-                let html = '';
-                data.forEach(item => {
-                    html += `<tr>
-      <th scope="row">${item.id}</th>
-      <td>${item.string}</td>
-      <td>${item.integer}</td>
-      <td>${item.float}</td>
-      <td>${item.date}</td>
-      <td>${item.boolean}</td>
-      <td>
-        <button type="button" class="btn btn-danger">delete</button>
-        <button type="button" class="btn btn-danger">edit</button>
-        </td>
+        $('nav').on("click", 'li',function(event){
+          event.preventDefault();
+          $('#page').val($(this).attr('pageid'))
+          loadData();
+        })
+
+        $('#form-search').submit((event) => {
+        event.preventDefault();
+        $('#page').val(1);
+        loadData()
+      })
+
+        $('#form-edit').submit((event) => {
+          event.preventDefault();
+          let id = $('#editId').val();
+          let string = $('#editString').val();
+          let integer = $('#editInteger').val();
+          let float = $('#editFloat').val();
+          let date = $('#editDate').val();
+          let boolean = $('#editBoolean').val();
+          updateData({ id,string, integer, float, date, boolean })
+
+        })
+
+       
+
+      })
+
+
+
+      const loadData = () => {
+      let page = $('#page').val();
+      let id = $('#Id').val();
+      let str = $('#String').val();
+      let int = $('#Integer').val();
+      let startdate = $('#start-date').val();
+      let enddate = $('#end-date').val();
+      let float = $('#Float').val();
+      let bool = $('#Boolean').val();
+
+        $.ajax({
+          method: "GET",
+          url: `${API_URL}siswa21`,
+          data: { page, id, str, int, startdate, enddate, float, bool },
+        dataType: 'json'
+
+        }).done(function (result) {
+          console.log('result', result)
+          const data = result.data
+          let page = result.page
+          let pages = result.pages
+          let pagination = '';
+          let html = '';
+          data.forEach(item => {
+
+            html += 
+           `<tr>
+            <th scope="row">${item.id}</th>
+            <td>${item.string}</td>
+            <td>${item.integer}</td>
+            <td>${item.float}</td>
+            <td>${moment(item.date).format("YYYY-MM-DD")}</td>
+            <td>${item.boolean}</td>
+            <td>
+            <button type="button" class="btn btn-danger btn-delete" dataId="${item.id}">delete</button>
+            <button type="button" class="btn btn-danger btn-edit" editId="${item.id}">edit</button>
+            </td>
       
-      </tr>`
-                });
-                $('table tbody').html(html)
-            }).fail(function (jqXHR, textStatus) {
-                alert("request Failed: " + textStatus);
-            });
-        }
+            </tr>`
+          });
 
-        const addData = (siswa21) => {
-            $.ajax({
-                method: "POST",
-                url: `${API_URL}siswa21`,
-                data: siswa21
+          if (page == 1) {
+            pagination += `<li class="page-item previous disabled" pageid="${page - 1}"><a class="page-link" href="#">Previous</a></li>\n`;
+          } else {
+            pagination += `<li class="page-item previous" pageid="${page - 1}"><a class="page-link" href="#">Previous</a></li>\n`;
+          }
 
-            }).done(function (data) {
-               loadData();
-            }).fail(function (jqXHR, textStatus) {
-                alert("request Failed: " + textStatus);
-            });
-        }
-        
+          for (i = 1; i <= pages; i++) {
+            if (i == page) {
+              pagination += `<li class="page-item active" pageid="${i}"><a class="page-link" href="#">${i}</a></li>\n`;
+            } else {
+              pagination += `<li class="page-item" pageid="${i}"><a class="page-link" href="#">${i}</a></li>\n`;
+            }
+          }
+
+          if (page == Number(pages)) {
+            pagination += `<li class="page-item next disabled" pageid="${page + 1}"><a class="page-link" href="#">Next</a></li>\n`;
+          } else {
+            pagination += `<li class="page-item next" pageid="${page + 1}"><a class="page-link" href="#">Next</a></li>\n`;
+          }
+
+          $('table tbody').html(html)
+          $('nav ul').html(pagination)
+
+        }).fail(function (jqXHR, textStatus) {
+          alert("request Failed: " + textStatus);
+        });
+      }
+
+     
+      const addData = (siswa21) => {
+        $.ajax({
+          method: "POST",
+          url: `${API_URL}siswa21`,
+          data: siswa21
+
+        }).done(function (data) {
+          loadData();
+          
+          
+        }).fail(function (jqXHR, textStatus) {
+          alert("request Failed: " + textStatus);
+        });
+        $('#form-add').trigger('reset')
+
+      }
+
+      const deleteData = (id) => {
+        $.ajax({
+          method: "DELETE",
+          url: `${API_URL}siswa21/${id}`
+           
+        }).done(function (data) {
+          loadData();
+         
+        }).fail(function (jqXHR, textStatus) {
+          alert("request Failed: " + textStatus);
+        });
+      }
+
+
+    const updateData = (siswa21) => {
+      $.ajax({
+        method: "PUT",
+        url: `${API_URL}siswa21/${siswa21.id}`,
+        data: siswa21,
+        dataType: 'json'
+      })
+        .done(function (msg) {
+          loadData();
+        })
+        .fail(function (jqXHR, textStatus) {
+          alert("Request failed: " + textStatus);
+        });
+    }
+    const printData = (id) => {
+      $.ajax({
+        method: "GET",
+        url: `${API_URL}siswa21/${id}`,
+        dataType: 'json'
+      })
+      .done(hasil => {
+          let html = '';
+          hasil.forEach(element => {
+            $('#editId').val(element.id);
+            $('#editString').val(element.string);
+            $('#editInteger').val(element.integer);
+            $('#editFloat').val(element.float);
+            $('#editDate').val(element.date);
+            $('#editBoolean').val(element.boolean);   
+          })
+        })
+        .fail(function (jqHXR, textStatus) {
+          alert("Request failed: " + textStatus)
+        })
+    }
+
+
     </script>
-    
+
 </body>
 
 
